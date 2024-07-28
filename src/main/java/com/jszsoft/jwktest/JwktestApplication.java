@@ -140,7 +140,7 @@ public class JwktestApplication implements CommandLineRunner {
 				publicKey = cert.getPublicKey();
 			}
 		} catch (Exception ex) {
-			LOG.error("Error when retrieving private key from JKS, {}", ex);
+			LOG.error("Error when retrieving public key from JKS, {}", ex);
 		}
 
 		return publicKey;
