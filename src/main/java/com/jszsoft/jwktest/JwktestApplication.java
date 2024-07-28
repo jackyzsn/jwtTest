@@ -239,11 +239,19 @@ public class JwktestApplication implements CommandLineRunner {
 				System.out.println("Expiration Time: " + claims.getExpirationTime());
 				System.out.println("Customer id: " + claims.getStringClaim("customer_id"));
 				System.out.println("User id: " + claims.getStringClaim("user_id"));
+
+				Instant now = Instant.now();
+				if (claims.getExpirationTime().before(Date.from(now))) {
+					System.out.println("JWT expired!!!");
+				} else {
+					System.out.println("JWT not expired.");
+				}
 			} else {
-				System.out.println("JWT verification failed!");
+				System.out.println("JWT verification failed, signature not matched!!!");
 			}
 		} catch (Exception ex) {
 			LOG.error("Error when verifying JWT, {}", ex);
 		}
 	}
+
 }
